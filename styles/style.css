@@ -1,14 +1,23 @@
 body {
-    border: solid;
     width: 500px;
-    height: 500px;
     margin: 5% auto;
     text-align: center;
 }
 
+button {
+    border: solid;
+    border-width: thin;
+}
+
+#calculator {
+    text-align: center;
+    display: inline-block;
+    border: solid;
+}
+
 #display {
     height: 5rem;
-    font-size: 4rem;;
+    font-size: 4rem;
 }
 
 #keypad {
@@ -44,6 +53,7 @@ body {
     width: 6rem;
     height: 5rem;
     font-size: 2rem;
+    background-color: lightblue;
 }
 
 .number-zero {
@@ -53,10 +63,11 @@ body {
 #clear {
     width: 6rem;
     height: 5rem;
+    background-color: lightcoral;
 }
 
 #equals {
     width: 6rem;
     height: 15rem;
+    background-color: lightgreen;
 }
-
