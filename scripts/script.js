@@ -11,6 +11,8 @@ let calculator = {
     firstNumber: '',
     secondNumber: '',
     operation: '',
+    operationChosen: true,
+    equalsChosen: false,
 }
 
 numbers.forEach((number) => {
@@ -27,7 +29,9 @@ operators.forEach((operator) => {
 
 equals.addEventListener('click', () => {
     let result = operate(calculator.operation, +calculator.firstNumber, +calculator.displayedNumber);
+    calculator.equalsChosen = true;
     updateDisplay(result);
+    calculator.equalsChosen = false;
 });
 
 clear.addEventListener('click', () => {
@@ -39,11 +43,14 @@ clear.addEventListener('click', () => {
 });
 
 function updateDisplay(num){
-    calculator.displayedNumber = num;
+    if(!calculator.operationChosen && !calculator.equalsChosen) calculator.displayedNumber = calculator.displayedNumber + num;
+    else calculator.displayedNumber = num;
+    calculator.operationChosen = false;
     display.textContent = calculator.displayedNumber;
 }
 
 function chooseOperation(selectedOp){
+    calculator.operationChosen = true;
     calculator.firstNumber = calculator.displayedNumber;
     if(selectedOp=="+") calculator.operation = "add";
     else if(selectedOp=="-") calculator.operation = "subtract";
