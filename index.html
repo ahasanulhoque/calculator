@@ -7,25 +7,39 @@
 <body>
     <div id="calculator">
         <div id="display">&nbsp</div>
-        <div id="calculator-numbers"></div>
-            <button type="button" class="number">7</button>
-            <button type="button" class="number">8</button>
-            <button type="button" class="number">9</button>
-            <button type="button" class="number">4</button>
-            <button type="button" class="number">5</button>
-            <button type="button" class="number">6</button>
-            <button type="button" class="number">1</button>
-            <button type="button" class="number">2</button>
-            <button type="button" class="number">3</button>
-            <button type="button" class="number">0</button>
-        </div>
-        <div id="calculator-operators">
-            <button type="button" class="operator">+</button>
-            <button type="button" class="operator">-</button>
-            <button type="button" class="operator">X</button>
-            <button type="button" class="operator">/</button>
-            <button type="button" id="equals">=</button>
-            <button type="button" id="clear">C</button>
+        <div id="keypad">
+            <div id="calculator-numbers">
+                <div id="top-row">
+                    <button type="button" class="number">7</button>
+                    <button type="button" class="number">8</button>
+                    <button type="button" class="number">9</button>
+                </div>
+                <div id="upper-middle-row">
+                    <button type="button" class="number">4</button>
+                    <button type="button" class="number">5</button>
+                    <button type="button" class="number">6</button>
+                </div>
+                <div id="lower-middle-row">
+                    <button type="button" class="number">1</button>
+                    <button type="button" class="number">2</button>
+                    <button type="button" class="number">3</button>
+                </div>
+                <div id="bottom-row">
+                    <button type="button" class="number number-zero">0</button>
+                </div>
+            </div>
+            <div id="calculator-operators">
+                <div id="operator-buttons">
+                    <button type="button" class="operator">+</button>
+                    <button type="button" class="operator">-</button>
+                    <button type="button" class="operator">X</button>
+                    <button type="button" class="operator">/</button>
+                </div>
+                <div id="additional-buttons">
+                    <button type="button" id="clear">C</button>
+                    <button type="button" id="equals">=</button>
+                </div>
+            </div>
         </div>
     </div>
 

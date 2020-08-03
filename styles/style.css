@@ -1,0 +1,62 @@
+body {
+    border: solid;
+    width: 500px;
+    height: 500px;
+    margin: 5% auto;
+    text-align: center;
+}
+
+#display {
+    height: 5rem;
+    font-size: 4rem;;
+}
+
+#keypad {
+    display: flex;
+}
+
+#calculator-operators {
+    display: flex;
+}
+
+#operator-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+#additional-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#display {
+    text-align: end;
+}
+
+.operator {
+    width: 6rem;
+    height: 5rem;
+}
+
+.number {
+    width: 6rem;
+    height: 5rem;
+    font-size: 2rem;
+}
+
+.number-zero {
+    width: 18.5rem;
+}
+
+#clear {
+    width: 6rem;
+    height: 5rem;
+}
+
+#equals {
+    width: 6rem;
+    height: 15rem;
+}
+
