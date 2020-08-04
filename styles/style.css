@@ -26,10 +26,20 @@ button {
     height: 5rem;
     font-size: 4rem;
     background-color: lightgray;
+    text-align: end;
 }
 
 #keypad {
     display: flex;
+}
+
+#main-numbers {
+    display: flex;
+}
+
+#left-column, #middle-column, #right-column {
+    display: flex;
+    flex-direction: column;
 }
 
 #calculator-operators {
@@ -44,12 +54,6 @@ button {
 #additional-buttons {
     display: flex;
     flex-direction: column;
-}
-
-
-
-#display {
-    text-align: end;
 }
 
 .operator {
@@ -81,7 +85,7 @@ button {
 }
 
 .number-zero {
-    width: 18.5rem;
+    width: 18rem;
 }
 
 #clear {
