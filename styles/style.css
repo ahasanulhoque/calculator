@@ -55,13 +55,29 @@ button {
 .operator {
     width: 6rem;
     height: 5rem;
-    background-color: lightyellow;
+    background-color: hsl(60, 100%, 84%);
+}
+
+.operator:hover {
+    background-color: hsl(60, 100%, 94%);
+}
+
+.operator:active {
+    background-color: hsl(60, 100%, 64%);
 }
 
 .number {
     width: 6rem;
     height: 5rem;
-    background-color: lightblue;
+    background-color: hsl(195, 53%, 79%);
+}
+
+.number:hover {
+    background-color: hsl(195, 53%, 89%);
+}
+
+.number:active {
+    background-color: hsl(195, 53%, 59%);
 }
 
 .number-zero {
@@ -71,11 +87,28 @@ button {
 #clear {
     width: 6rem;
     height: 5rem;
-    background-color: lightcoral;
+    background-color: hsl(0, 79%, 72%);
+}
+
+#clear:hover {
+    background-color: hsl(0, 79%, 82%);
+}
+
+#clear:active {
+    background-color: hsl(0, 79%, 62%);
 }
 
 #equals {
     width: 6rem;
     height: 15rem;
-    background-color: lightgreen;
+    background-color: hsl(120, 73%, 75%);
 }
+
+#equals:hover {
+    background-color: hsl(120, 73%, 85%);
+}
+
+#equals:active {
+    background-color: hsl(120, 73%, 65%);
+}
+
