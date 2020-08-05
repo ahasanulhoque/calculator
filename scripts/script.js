@@ -1,5 +1,6 @@
 const numPad = document.querySelector("#calculator-numbers");
 const numbers = document.querySelectorAll('.number');
+const decimal = document.querySelector("#decimal");
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
@@ -27,10 +28,20 @@ operators.forEach((operator) => {
     });
 });
 
+decimal.addEventListener('click', () => {
+    decimal.setAttribute('disabled', '');
+});
+
 equals.addEventListener('click', () => {
     let result = operate(calculator.operation, +calculator.firstNumber, +calculator.displayedNumber);
     calculator.equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not carried out
+    if((result.toString()).indexOf('.') != -1 && (result.toString()).length >= 14) {
+        result = result.toFixed(14-(result.toString()).indexOf('.'));
+    } else if ((result.toString()).length >= 14) {
+        result = result.toExponential(6)
+    }
     updateDisplay(result);
+    decimal.removeAttribute('disabled');
     calculator.equalsChosen = false;
     calculator.operation = '';       //Make this an empty string so operations can be carried out on the result
 });                                  //See the first condition in chooseOperation()
@@ -40,13 +51,16 @@ clear.addEventListener('click', () => {
     calculator.firstNumber = '';
     calculator.secondNumber = '';
     calculator.operation = '';
+    decimal.removeAttribute('disabled');
     display.textContent = String.fromCharCode(160);
 });
 
 function updateDisplay(num){
     //The if statement below allows the user to enter multiple digits
-    if(!calculator.operationChosen && !calculator.equalsChosen && calculator.displayedNumber != 'Err') calculator.displayedNumber = calculator.displayedNumber + num;
-    else calculator.displayedNumber = num;
+    if(!calculator.operationChosen && !calculator.equalsChosen 
+        && calculator.displayedNumber != 'Err'){
+        calculator.displayedNumber = calculator.displayedNumber + num;
+    } else calculator.displayedNumber = num;
     calculator.operationChosen = false;             //Flip back to false to allow user enter multiple digits
     display.textContent = calculator.displayedNumber;
 }
@@ -67,6 +81,8 @@ function chooseOperation(selectedOp){
     else if(selectedOp=="-") calculator.operation = "subtract";
     else if(selectedOp=="X") calculator.operation = "multiply";
     else if (selectedOp=="/") calculator.operation = "divide";
+
+    decimal.removeAttribute('disabled');
 }
 
 //Takes in an operator, then calls the correct function

@@ -24,7 +24,7 @@ button {
 
 #display {
     height: 5rem;
-    font-size: 4rem;
+    font-size: 3rem;
     background-color: lightgray;
     text-align: end;
 }
@@ -40,6 +40,10 @@ button {
 #left-column, #middle-column, #right-column {
     display: flex;
     flex-direction: column;
+}
+
+#bottom-row {
+    display: flex;
 }
 
 #calculator-operators {
@@ -84,8 +88,8 @@ button {
     background-color: hsl(195, 53%, 59%);
 }
 
-.number-zero {
-    width: 18rem;
+#number-zero {
+    width: 12rem;
 }
 
 #clear {
