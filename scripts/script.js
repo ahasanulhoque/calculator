@@ -7,14 +7,12 @@ const clear = document.querySelector("#clear");
 let display = document.querySelector("#display");
 
 
-let calculator = {
-    displayedNumber: '',
-    firstNumber: '',
-    secondNumber: '',
-    operation: '',
-    operationChosen: true,
-    equalsChosen: false,
-}
+let displayedNumber = '';
+let firstNumber = '';
+let operation = '';
+let operationChosen = true;
+let equalsChosen = false;
+
 
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
@@ -33,8 +31,8 @@ decimal.addEventListener('click', () => {
 });
 
 equals.addEventListener('click', () => {
-    let result = operate(calculator.operation, +calculator.firstNumber, +calculator.displayedNumber);
-    calculator.equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not carried out
+    let result = operate(operation, +firstNumber, +displayedNumber);
+    equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not carried out
     if((result.toString()).indexOf('.') != -1 && (result.toString()).length >= 14) {
         result = result.toFixed(14-(result.toString()).indexOf('.'));
     } else if ((result.toString()).length >= 14) {
@@ -42,45 +40,45 @@ equals.addEventListener('click', () => {
     }
     updateDisplay(result);
     decimal.removeAttribute('disabled');
-    calculator.equalsChosen = false;
-    calculator.operation = '';       //Make this an empty string so operations can be carried out on the result
+    equalsChosen = false;
+    operation = '';       //Make this an empty string so operations can be carried out on the result
 });                                  //See the first condition in chooseOperation()
 
 clear.addEventListener('click', () => {
-    calculator.displayedNumber = '';
-    calculator.firstNumber = '';
-    calculator.secondNumber = '';
-    calculator.operation = '';
+    displayedNumber = '';
+    firstNumber = '';
+    secondNumber = '';
+    operation = '';
     decimal.removeAttribute('disabled');
     display.textContent = String.fromCharCode(160);
 });
 
 function updateDisplay(num){
     //The if statement below allows the user to enter multiple digits
-    if(!calculator.operationChosen && !calculator.equalsChosen 
-        && calculator.displayedNumber != 'Err'){
-        calculator.displayedNumber = calculator.displayedNumber + num;
-    } else calculator.displayedNumber = num;
-    calculator.operationChosen = false;             //Flip back to false to allow user enter multiple digits
-    display.textContent = calculator.displayedNumber;
+    if(!operationChosen && !equalsChosen 
+        && displayedNumber != 'Err'){
+        displayedNumber = displayedNumber + num;
+    } else displayedNumber = num;
+    operationChosen = false;             //Flip back to false to allow user enter multiple digits
+    display.textContent = displayedNumber;
 }
 
 function chooseOperation(selectedOp){
     //The if statement below allows the user to string together operations. The second part of the condition
     //also checks to see if equals has just been pressed and an operation is being performed on the result.
 
-    //calculator.operation and calculator.opeartionChosen are used for separate checks: do I operate in background
-    //(used by this function, calculator.operation) or do I add multiple digits (used in updateDisplay(), calculator.opeartionChosen)
-    if(calculator.firstNumber != '' && calculator.operation != ''){
-        calculator.firstNumber = operate(calculator.operation, +calculator.firstNumber, +calculator.displayedNumber);
+    //operation and opeartionChosen are used for separate checks: do I operate in background
+    //(used by this function, operation) or do I add multiple digits (used in updateDisplay(), opeartionChosen)
+    if(firstNumber != '' && operation != ''){
+        firstNumber = operate(operation, +firstNumber, +displayedNumber);
     } else {
-        calculator.firstNumber = calculator.displayedNumber;
+        firstNumber = displayedNumber;
     }
-    calculator.operationChosen = true;
-    if(selectedOp=="+") calculator.operation = "add";
-    else if(selectedOp=="-") calculator.operation = "subtract";
-    else if(selectedOp=="X") calculator.operation = "multiply";
-    else if (selectedOp=="/") calculator.operation = "divide";
+    operationChosen = true;
+    if(selectedOp=="+") operation = "add";
+    else if(selectedOp=="-") operation = "subtract";
+    else if(selectedOp=="X") operation = "multiply";
+    else if (selectedOp=="/") operation = "divide";
 
     decimal.removeAttribute('disabled');
 }
@@ -89,7 +87,7 @@ function chooseOperation(selectedOp){
 function operate(operator, a, b){
     if(operator == "divide" && b == 0){
         alert("You cannot divide by 0!");
-        calculator.operationChosen = true;
+        operationChosen = true;
         return 'Err';
     }
 
