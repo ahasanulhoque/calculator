@@ -4,6 +4,7 @@ const decimal = document.querySelector("#decimal");
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
+const back = document.querySelector('#backspace');
 let display = document.querySelector("#display");
 
 
@@ -44,6 +45,12 @@ equals.addEventListener('click', () => {
     equalsChosen = false;
     operation = '';       //Make this an empty string so operations can be carried out on the result
 });                                  //See the first condition in chooseOperation()
+
+back.addEventListener('click', () => {
+    if(displayedNumber.charAt(displayedNumber.length-1) == '.') decimal.removeAttribute('disabled');
+    displayedNumber = displayedNumber.slice(0,displayedNumber.length-1);
+    display.textContent = displayedNumber;
+});
 
 clear.addEventListener('click', () => {
     displayedNumber = '';
