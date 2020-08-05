@@ -32,7 +32,7 @@ decimal.addEventListener('click', () => {
 
 equals.addEventListener('click', () => {
     let result = operate(operation, +firstNumber, +displayedNumber);
-    equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not carried out
+    equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not true
     if((result.toString()).indexOf('.') != -1 && (result.toString()).length >= 14) {
         result = result.toFixed(14-(result.toString()).indexOf('.'));
     } else if ((result.toString()).length >= 14) {
@@ -40,6 +40,7 @@ equals.addEventListener('click', () => {
     }
     updateDisplay(result);
     decimal.removeAttribute('disabled');
+    operationChosen = true;
     equalsChosen = false;
     operation = '';       //Make this an empty string so operations can be carried out on the result
 });                                  //See the first condition in chooseOperation()
@@ -56,9 +57,9 @@ clear.addEventListener('click', () => {
 function updateDisplay(num){
     //The if statement below allows the user to enter multiple digits
     if(!operationChosen && !equalsChosen 
-        && displayedNumber != 'Err'){
+        && displayedNumber != 'Err' & displayedNumber.length <  14){
         displayedNumber = displayedNumber + num;
-    } else displayedNumber = num;
+    } else if(operationChosen || equalsChosen) displayedNumber = num;
     operationChosen = false;             //Flip back to false to allow user enter multiple digits
     display.textContent = displayedNumber;
 }
