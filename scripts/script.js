@@ -32,33 +32,15 @@ decimal.addEventListener('click', () => {
 });
 
 equals.addEventListener('click', () => {
-    let result = operate(operation, +firstNumber, +displayedNumber);
-    equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not true
-    if((result.toString()).indexOf('.') != -1 && (result.toString()).length >= 14) {
-        result = result.toFixed(14-(result.toString()).indexOf('.'));
-    } else if ((result.toString()).length >= 14) {
-        result = result.toExponential(6)
-    }
-    updateDisplay(result);
-    decimal.removeAttribute('disabled');
-    operationChosen = true;
-    equalsChosen = false;
-    operation = '';       //Make this an empty string so operations can be carried out on the result
-});                                  //See the first condition in chooseOperation()
+    showSolution();
+});                                  
 
 back.addEventListener('click', () => {
-    if(displayedNumber.charAt(displayedNumber.length-1) == '.') decimal.removeAttribute('disabled');
-    displayedNumber = displayedNumber.slice(0,displayedNumber.length-1);
-    display.textContent = displayedNumber;
+    deleteLastNumber();
 });
 
 clear.addEventListener('click', () => {
-    displayedNumber = '';
-    firstNumber = '';
-    secondNumber = '';
-    operation = '';
-    decimal.removeAttribute('disabled');
-    display.textContent = String.fromCharCode(160);
+    clearDisplay();
 });
 
 function updateDisplay(num){
@@ -105,6 +87,21 @@ function operate(operator, a, b){
     else if(operator == "divide") return divide(a,b);
 }
 
+function showSolution(){
+    let result = operate(operation, +firstNumber, +displayedNumber);
+    equalsChosen = true;   //Flip flag so the if statement in updateDisplay() is not true
+    if((result.toString()).indexOf('.') != -1 && (result.toString()).length >= 14) {
+        result = result.toFixed(14-(result.toString()).indexOf('.'));
+    } else if ((result.toString()).length >= 14) {
+        result = result.toExponential(6)
+    }
+    updateDisplay(result);
+    decimal.removeAttribute('disabled');
+    operationChosen = true;
+    equalsChosen = false;
+    operation = '';                 //Make this an empty string so operations can be carried out on the result
+}                                   //See the first condition in chooseOperation()
+
 //Basic operations are below
 function add(a,b){
     return a + b;
@@ -121,3 +118,40 @@ function multiply(a,b){
 function divide(a,b){
     return a / b;
 }
+
+function clearDisplay(){
+    displayedNumber = '';
+    firstNumber = '';
+    operation = '';
+    decimal.removeAttribute('disabled');
+    display.textContent = String.fromCharCode(160);
+}
+
+function deleteLastNumber(){
+    if(displayedNumber.charAt(displayedNumber.length-1) == '.') decimal.removeAttribute('disabled');
+    displayedNumber = displayedNumber.slice(0,displayedNumber.length-1);
+    display.textContent = displayedNumber;
+}
+
+//Keyboard support
+document.addEventListener('keydown', function(e) {
+    if(e.key == '0' || e.key == '1' || e.key == '2' || e.key == '3' || e.key == '4' || 
+        e.key == '5' || e.key == '6' || e.key == '7' || e.key == '8' || e.key == '9' ||
+        e.key == '.'){
+        updateDisplay(e.key);
+    } else if(e.key == '+' || e.key == '-' || e.key == 'X' || e.key == '/'){
+        chooseOperation(e.key);
+    } else if(e.key == '*' || e.key == 'x'){
+        chooseOperation('X');
+    } else if(e.code == 'KeyC'){
+        clearDisplay();
+    } else if(e.code == 'Backspace'){
+        deleteLastNumber();
+    } else if(e.key == '=' || e.code == 'Enter'){
+        showSolution();
+    }
+    
+    if(e.key == '.'){
+        decimal.setAttribute('disabled', '');
+    }
+});
