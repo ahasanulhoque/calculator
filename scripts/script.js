@@ -147,7 +147,7 @@ document.addEventListener('keydown', function(e) {
         clearDisplay();
     } else if(e.code == 'Backspace'){
         deleteLastNumber();
-    } else if(e.key == '=' || e.code == 'Enter'){
+    } else if(e.key == '=' || e.code == 'Enter' || e.code == 'NumpadEnter'){
         showSolution();
     }
 
