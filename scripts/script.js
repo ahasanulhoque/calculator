@@ -5,7 +5,7 @@ const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 const back = document.querySelector('#backspace');
-let display = document.querySelector("#display");
+const display = document.querySelector("#display");
 
 
 let displayedNumber = '';
@@ -150,7 +150,7 @@ document.addEventListener('keydown', function(e) {
     } else if(e.key == '=' || e.code == 'Enter'){
         showSolution();
     }
-    
+
     if(e.key == '.'){
         decimal.setAttribute('disabled', '');
     }
