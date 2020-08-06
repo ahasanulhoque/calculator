@@ -1,5 +1,5 @@
 html {
-    background: linear-gradient(35deg, #ffddcc,  #e64d00);
+    background: linear-gradient(35deg, #ffff80,  #ff944d);
     height: 100vh;
 }
 
@@ -109,6 +109,15 @@ button {
 #backspace {
     width: 6rem;
     height: 5rem;
+    background-color: hsl(280, 100%, 70%);
+}
+
+#backspace:hover {
+    background-color: hsl(280, 100%, 80%); 
+}
+
+#backspace:active {
+    background-color: hsl(280, 100%, 60%);
 }
 
 #equals {
